@@ -1,0 +1,22 @@
+<dataset>
+	<tx_ccc_data id="1">
+		<hidden>0</hidden>
+		<title is-null="yes" />
+	</tx_ccc_data>
+
+	<tx_ccc_test id="1">
+		<hidden>0</hidden>
+	</tx_ccc_test>
+	<tx_ccc_test id="2">
+		<hidden>0</hidden>
+	</tx_ccc_test>
+
+	<tx_ccc_data_test_mm>
+		<uid_local ref="tx_ccc_data#1" />
+		<uid_foreign ref="tx_ccc_test#1" />
+	</tx_ccc_data_test_mm>
+		<tx_ccc_data_test_mm>
+		<uid_local ref="tx_ccc_data#1" />
+		<uid_foreign ref="tx_ccc_test#2" />
+	</tx_ccc_data_test_mm>
+</dataset>

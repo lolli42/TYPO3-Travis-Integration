@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for the PHPUnit status reports</description>
+		<labelContext type="array">
+		</labelContext>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="status_phpComments">PHP Comments</label>
+			<label index="status_phpComments_stripped_short">stripped</label>
+			<label index="status_phpComments_stripped_verbose">PHP Comments get stripped on your installation. This will cause PHPUnit to not find tests using the @test annotation. Please either disable your PHP accelerator or configure your PHP accelerator to not strip PHP comments.</label>
+			<label index="status_phpComments_present_short">OK</label>
+			<label index="status_phpComments_present_verbose">PHP Comments are retained on your installation.</label>
+			<label index="status_eAccelerator">eAccelerator</label>
+			<label index="status_eAccelerator_notInstalled_short">not installed</label>
+			<label index="status_eAccelerator_installedNew_short">current version</label>
+			<label index="status_eAccelerator_installedNew_verbose">eAccelerator in version %s is loaded. This is current enough to not crash phpunit.</label>
+			<label index="status_eAccelerator_installedOld_short">old version</label>
+			<label index="status_eAccelerator_installedOld_verbose">eAccelerator in version %s is loaded. This versions is known to &lt;a href=&quot;http://eaccelerator.net/ticket/242&quot;&gt;crash phpunit&lt;/a&gt; when the optimizer is turned on. You should either upgrade to eAccelerator version 0.9.5.2 (or later) or turn off the eAccelerator optimizer (in php.ini set: &lt;code&gt;eaccelerator.optimizer = &amp;quot;0&amp;quot;&lt;/code&gt;) when running phpunit.</label>
+			<label index="status_xdebug">Xdebug</label>
+			<label index="status_loaded">loaded</label>
+			<label index="status_notLoaded">not loaded</label>
+			<label index="status_memoryLimit">PHP Memory Limit</label>
+			<label index="status_memoryLimit_tooLittle">A PHP memory limit of %1s is required for running the PHPUnit tests, but a limit of %2s (or more) is recommended. Particularly, code coverage reports need lots of memory.</label>
+			<label index="status_includePath">PHP Include Path</label>
+			<label index="status_excludedExtensions">Extensions excluded from testing</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="status_phpComments">PHP-Kommentare</label>
+			<label index="status_phpComments_stripped_short">entfernt</label>
+			<label index="status_phpComments_stripped_verbose">PHP-Kommentare werden bei Ihrer Installation entfernt, so dass PHPUnit Tests mit der @test-Annotation nicht findet. Bitte schalten Sie Ihren PHP-Beschleuniger aus oder konfigurieren Sie Ihren PHP-Beschleuniger so, dass er PHP-Kommentare nicht entfernt.</label>
+			<label index="status_phpComments_present_short">OK</label>
+			<label index="status_phpComments_present_verbose">PHP-Kommentare bleiben bei Ihrer Installation erhalten.</label>
+			<label index="status_eAccelerator">eAccelerator</label>
+			<label index="status_eAccelerator_notInstalled_short">nicht installiert</label>
+			<label index="status_eAccelerator_installedNew_short">aktuelle Version</label>
+			<label index="status_eAccelerator_installedNew_verbose">eAccelerator in der Version %s ist geladen. Diese Version ist neu genug, um phpunit nicht abstürzen zu lassen.</label>
+			<label index="status_eAccelerator_installedOld_short">veraltete Version</label>
+			<label index="status_eAccelerator_installedOld_verbose">eAccelerator in der Version %s ist geladen. Diese Version ist dafür bekannt, &lt;a href=&quot;http://eaccelerator.net/ticket/242&quot;&gt;phpunit zum Absturz zu bringen&lt;/a&gt;. Bitte aktualisieren Sie eAccelerator auf Version 0.9.5.2 (oder neuer) oder schalten Sie den eAccelerator-Optimierer aus (setzen Sie das hier in der php.ini: &lt;code&gt;eaccelerator.optimizer = &amp;quot;0&amp;quot;&lt;/code&gt;), wenn Sie mit phpunit arbeiten.</label>
+			<label index="status_xdebug">Xdebug</label>
+			<label index="status_loaded">geladen</label>
+			<label index="status_notLoaded">nicht geladen</label>
+			<label index="status_memoryLimit">PHP-Speicherbegrenzung</label>
+			<label index="status_memoryLimit_tooLittle">Eine PHP-Speicherbegrenzung von %1s ist für das Ausführen von PHPUnit-Tests erforderlich. %2s (oder mehr) werden empfohlen. Insbesondere die Code-Coverage-Berichte benötigen sehr viel Speicher.</label>
+			<label index="status_includePath">PHP-Include-Path</label>
+			<label index="status_excludedExtensions">Von den Unit-Tests ausgeschlossene Erweiterungen</label>
+		</languageKey>
+	</data>
+	<orig_hash type="array">
+		<languageKey index="de" type="array">
+			<label index="status_phpComments" type="integer">148981715</label>
+			<label index="status_phpComments_stripped_short" type="integer">17607112</label>
+			<label index="status_phpComments_stripped_verbose" type="integer">21256072</label>
+			<label index="status_phpComments_present_short" type="integer">235577377</label>
+			<label index="status_phpComments_present_verbose" type="integer">36712388</label>
+			<label index="status_eAccelerator" type="integer">98854897</label>
+			<label index="status_eAccelerator_notInstalled_short" type="integer">195175134</label>
+			<label index="status_eAccelerator_installedNew_short" type="integer">139610697</label>
+			<label index="status_eAccelerator_installedNew_verbose" type="integer">263934305</label>
+			<label index="status_eAccelerator_installedOld_short" type="integer">261314415</label>
+			<label index="status_eAccelerator_installedOld_verbose" type="integer">118950726</label>
+			<label index="status_xdebug" type="integer">17124310</label>
+			<label index="status_loaded" type="integer">37949411</label>
+			<label index="status_notLoaded" type="integer">51119452</label>
+			<label index="status_memoryLimit" type="integer">132739621</label>
+			<label index="status_memoryLimit_tooLittle" type="integer">247170632</label>
+			<label index="status_includePath" type="integer">254670759</label>
+			<label index="status_excludedExtensions" type="integer">133406142</label>
+		</languageKey>
+	</orig_hash>
+	<orig_text type="array">
+		<languageKey index="de" type="array">
+			<label index="status_phpComments">PHP Comments</label>
+			<label index="status_phpComments_stripped_short">stripped</label>
+			<label index="status_phpComments_stripped_verbose">PHP Comments get stripped on your installation. This will cause PHPUnit to not find tests using the @test annotation. Please either disable your PHP accelerator or configure your PHP accelerator to not strip PHP comments.</label>
+			<label index="status_phpComments_present_short">OK</label>
+			<label index="status_phpComments_present_verbose">PHP Comments are retained on your installation.</label>
+			<label index="status_eAccelerator">eAccelerator</label>
+			<label index="status_eAccelerator_notInstalled_short">not installed</label>
+			<label index="status_eAccelerator_installedNew_short">current version</label>
+			<label index="status_eAccelerator_installedNew_verbose">eAccelerator in version %s is loaded. This is current enough to not crash phpunit.</label>
+			<label index="status_eAccelerator_installedOld_short">old version</label>
+			<label index="status_eAccelerator_installedOld_verbose">eAccelerator in version %s is loaded. This versions is known to &lt;a href=&quot;http://eaccelerator.net/ticket/242&quot;&gt;crash phpunit&lt;/a&gt; when the optimizer is turned on. You should either upgrade to eAccelerator version 0.9.5.2 (or later) or turn off the eAccelerator optimizer (in php.ini set: &lt;code&gt;eaccelerator.optimizer = &amp;quot;0&amp;quot;&lt;/code&gt;) when running phpunit.</label>
+			<label index="status_xdebug">Xdebug</label>
+			<label index="status_loaded">loaded</label>
+			<label index="status_notLoaded">not loaded</label>
+			<label index="status_memoryLimit">PHP Memory Limit</label>
+			<label index="status_memoryLimit_tooLittle">A PHP memory limit of %1s is required for running the PHPUnit tests, but a limit of %2s (or more) is recommended. Particularly, code coverage reports need lots of memory.</label>
+			<label index="status_includePath">PHP Include Path</label>
+			<label index="status_excludedExtensions">Extensions excluded from testing</label>
+		</languageKey>
+	</orig_text>
+</T3locallang>

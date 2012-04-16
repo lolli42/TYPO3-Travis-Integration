@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="PHPUnit 3.4.15">
+  <file name="C:\dev\php\bovigo\vfs\trunk\src\main\php\org\bovigo\vfs\vfsStreamWrapper.php">
+    <violation rule="CyclomaticComplexity" priority="1" line="220" to-line="296" package="bovigo_vfs" class="vfsStreamWrapper" method="stream_open">The cyclomatic complexity is 20.
+Complexity is determined by the number of decision points in a function or method plus one for the function or method entry. The decision points are "if", "for", "foreach", "while", "case", "catch", "&amp;&amp;", "||", and "?:". Generally, 1-4 is low complexity, 5-7 indicates moderate complexity, 8-10 is high complexity, and 11+ is very high complexity.</violation>
+    <violation rule="NPathComplexity" priority="1" line="220" to-line="296" package="bovigo_vfs" class="vfsStreamWrapper" method="stream_open">The NPath complexity is 18954.
+The NPath complexity of a function or method is the number of acyclic execution paths through that method. A threshold of 200 is generally considered the point where measures should be taken to reduce complexity.</violation>
+    <violation rule="NPathComplexity" priority="1" line="508" to-line="549" package="bovigo_vfs" class="vfsStreamWrapper" method="mkdir">The NPath complexity is 544.
+The NPath complexity of a function or method is the number of acyclic execution paths through that method. A threshold of 200 is generally considered the point where measures should be taken to reduce complexity.</violation>
+  </file>
+</pmd>
