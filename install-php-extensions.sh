@@ -1,6 +1,13 @@
 #!/bin/bash
 
-# install igbinary
-pyrus install pecl/igbinary && pyrus build pecl/igbinary
-echo "extension=\"igbinary.so\"" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+
+function installPhpExtension() {
+	name=$1
+	pyrus install pecl/$name && pyrus build pecl/$name
+	echo "extension=\"$name.so\"" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+}
+
+installPhpExtension igbinary
+installPhpExtension apc
+
 
