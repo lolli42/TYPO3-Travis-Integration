@@ -1,13 +1,7 @@
 #!/bin/bash
 
 
-function installPhpExtension() {
-	name=$1
-	pyrus install pecl/$name && pyrus build pecl/$name
-	echo "extension=\"$name.so\"" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
-}
-
-installPhpExtension igbinary
-#apt-get -y install php-apc
-
-
+pecl install igbinary > /dev/null
+printf "no\n" | pecl install memcache > /dev/null
+echo "extension=\"memcache.so\"" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+echo "extension=\"igbinary.so\"" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
