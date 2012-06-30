@@ -8,6 +8,6 @@ function installPhpExtension() {
 }
 
 installPhpExtension igbinary
-apt-get install php-apc
+#apt-get -y install php-apc
 
 
