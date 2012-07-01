@@ -21,18 +21,17 @@ function addModuleToPhpConfig() {
 }
 
 function installPhpModule() {
-	if [[ "$1" == "-y" ]]
-	then
-		CONFIRM="printf \"no\n\" |"
-		shift
-	fi
-
-	if [[ "$1" == "redis" ]]
-	then
-		installRedis
-	else
-		$DEBUG $CONFIRM pecl install $1
-	fi
+	case "$1" in
+		-y)
+			$DEBUG printf "no\n" | pecl install $2
+		;;
+		redis)
+			installRedis
+		;;
+		*)
+			$DEBUG pecl install $1
+		;;
+	esac
 
 	addModuleToPhpConfig $1
 
