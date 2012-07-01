@@ -1,5 +1,5 @@
 #!/bin/bash
-export DEBUG="echo"
+export DEBUG=""
 export phpConfigFile=`php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
 
 function addOptionToPhpConfig() {
@@ -47,16 +47,4 @@ function installRedis() {
 	$DEBUG sudo make install
 	cd $_pwd
 }
-
-installPhpModule igbinary
-installPhpModule -y memcache
-installPhpModule redis
-
-if [[ "$TRAVIS_PHP_VERSION" == "5.3" ]]
-then 
-	installPhpModule -y apc 
-	addOptionToPhpConfig "apc.enable_cli=1"
-	addOptionToPhpConfig "apc.slam_defense=0"
-fi
-
 
