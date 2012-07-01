@@ -44,8 +44,8 @@ function installPhpModule() {
 
 function installRedis() {
 	_pwd=$PWD
-	mkdir phpredis-build
-	cd phpredis-build
+	mkdir build-environment/phpredis-build
+	cd build-environment/phpredis-build
 	$DEBUG git clone --depth 1 git://github.com/nicolasff/phpredis.git
 	$DEBUG cd phpredis
 	$DEBUG phpize
