@@ -1,5 +1,4 @@
 #!/bin/bash
-export DEBUG=""
 export phpConfigFile=`php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
 
 function addOptionToPhpConfig() {
@@ -7,30 +6,30 @@ function addOptionToPhpConfig() {
 	then
 		echo "Option $1 already added"
 	else
-		if [ -n "$DEBUG" ]
-		then
-			echo "$1 >> $phpConfigFile" 
-		else
-			echo "$1" >> $phpConfigFile
-		fi
+		echo "$1" >> $phpConfigFile
 	fi
 }
 
 function addModuleToPhpConfig() {
-	addOptionToPhpConfig "extension=$1.so"
+	if grep -q "$1.so" $phpConfigFile
+	then
+		echo "Module $1 already added"
+	else
+		addOptionToPhpConfig "extension=$1.so"
+	fi
 }
 
 function installPhpModule() {
 	case "$1" in
 		-y)
-			$DEBUG printf "no\n" | pecl install $2
+			printf "no\n" | pecl install $2 > /dev/null
 			shift
 		;;
 		redis)
-			installRedis
+			installRedis > /dev/null
 		;;
 		*)
-			$DEBUG pecl install $1
+			pecl install $1 > /dev/null
 		;;
 	esac
 
@@ -47,12 +46,12 @@ function installRedis() {
 	_pwd=$PWD
 	mkdir build-environment/phpredis-build
 	cd build-environment/phpredis-build
-	$DEBUG git clone --depth 1 git://github.com/nicolasff/phpredis.git
-	$DEBUG cd phpredis
-	$DEBUG phpize
-	$DEBUG ./configure
-	$DEBUG make
-	$DEBUG sudo make install
+	git clone --depth 1 git://github.com/nicolasff/phpredis.git
+	cd phpredis
+	phpize
+	./configure
+	make
+	sudo make install
 	cd $_pwd
 }
 
