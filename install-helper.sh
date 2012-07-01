@@ -31,8 +31,15 @@ function installPhpModule() {
 		CONFIRM="printf \"no\n\" |"
 		shift
 	fi
+
 	$DEBUG $CONFIRM pecl install $1
 	addModuleToPhpConfig $1
+
+	if [[ "$1" == "apc" ]]
+	then
+		addOptionToPhpConfig "apc.enable_cli=1"
+		addOptionToPhpConfig "apc.slam_defense=0"
+	fi
 }
 
 function installRedis() {
