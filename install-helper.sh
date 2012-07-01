@@ -24,6 +24,7 @@ function installPhpModule() {
 	case "$1" in
 		-y)
 			$DEBUG printf "no\n" | pecl install $2
+			shift
 		;;
 		redis)
 			installRedis
