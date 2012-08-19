@@ -12,7 +12,7 @@ $typo_db = 'typo3_test';
 $TYPO3_CONF_VARS['SYS']['sitename'] = 'New TYPO3 site';
 $TYPO3_CONF_VARS['SYS']['doNotCheckReferer'] = '1';
 $TYPO3_CONF_VARS['SYS']['forceReturnPath'] = '1';
-
+$TYPO3_CONF_VARS['SYS']['encryptionKey'] = 'Travis Tests';
 	// Default password is "joh316" :
 $TYPO3_CONF_VARS['BE']['installToolPassword'] = 'bacb98acf97e0b6112b1d1b650b84971';
 $TYPO3_CONF_VARS['BE']['fileCreateMask'] = '0664';
