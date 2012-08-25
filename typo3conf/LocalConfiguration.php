@@ -1,7 +1,6 @@
 <?php
 return array(
 	'BE' => array(
-		'createGroup' => 'vagrant',
 		'disable_exec_function' => 0,
 		'fileCreateMask' => '0664',
 		'folderCreateMask' => '2774',
