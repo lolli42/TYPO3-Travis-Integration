@@ -59,6 +59,7 @@ return array(
 			'phpunit',
 			'scheduler',
 			'indexed_search',
+			'saltedpasswords',
 		),
 	),
 	'FE' => array(
