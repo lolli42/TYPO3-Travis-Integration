@@ -58,6 +58,7 @@ return array(
 			'form',
 			'phpunit',
 			'scheduler',
+			'indexed_search',
 		),
 	),
 	'FE' => array(
