@@ -92,6 +92,7 @@ return array(
 		'sitename' => 'New TYPO3 site',
 		'sqlDebug' => '1',
 		'UTF8filesystem' => '1',
+		'debugExceptionHandler' => '',
 	),
 );
 ?>
