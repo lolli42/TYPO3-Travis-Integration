@@ -93,6 +93,7 @@ return array(
 		'sqlDebug' => '1',
 		'UTF8filesystem' => '1',
 		'debugExceptionHandler' => '',
+		'setMemoryLimit' => 1024,
 	),
 );
 ?>
