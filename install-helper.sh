@@ -55,3 +55,25 @@ function installRedis() {
 	cd $_pwd
 }
 
+function phpLint {
+	for file in `find . -name \*.php`
+	do
+		echo -en "\r\033[KChecking: $file"
+		if ! php -l $file > /dev/null
+		then
+			echo -en "\r\033[K"
+			echo -e "\e[00;31mSyntax errors detected in file: $file\e[00m"
+			ERR=1
+			[ -z "$1" ] && break
+		fi
+	done
+
+	echo -e "\r\033[K"
+
+	if [ -n "$ERR" ]
+	then
+		return 99
+	fi
+
+	return 0
+}
