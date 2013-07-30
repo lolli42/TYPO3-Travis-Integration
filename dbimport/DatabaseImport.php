@@ -95,6 +95,6 @@ class DatabaseImport {
 	}
 }
 
-$databaseImport = new \TYPO3\CI\TravisIntegration\DatabaseImport();
+$databaseImport = new \TYPO3\CMS\TravisIntegration\DatabaseImport();
 $databaseImport->run();
 ?>
