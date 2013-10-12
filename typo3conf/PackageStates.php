@@ -428,7 +428,7 @@ return array (
     array (
       'manifestPath' => '',
       'composerName' => 'typo3/cms/version',
-      'state' => 'inactive',
+      'state' => 'active',
       'packagePath' => 'typo3/sysext/version/',
       'classesPath' => 'Classes/',
     ),
@@ -460,7 +460,7 @@ return array (
     array (
       'manifestPath' => '',
       'composerName' => 'typo3/cms/workspaces',
-      'state' => 'inactive',
+      'state' => 'active',
       'packagePath' => 'typo3/sysext/workspaces/',
       'classesPath' => 'Classes/',
     ),
