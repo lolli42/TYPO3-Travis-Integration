@@ -54,7 +54,22 @@ function installRedis() {
 	sudo make install
 	cd $_pwd
 }
-
+function functionalTestsCommand {
+	if grep directory typo3/sysext/core/Build/FunctionalTests.xml | sed 's#[	]*<directory>\.\./\.\./\.\./\.\./\(typo3/sysext.*\)</directory>$#\1#g' | parallel --gnu --keep-order 'echo "Running {} tests"; ./typo3conf/ext/phpunit/Composer/vendor/bin/phpunit -c typo3/sysext/core/Build/FunctionalTests.xml {}'
+	then
+		return 0
+	else
+		return 99
+	fi
+}
+function unitTestCommand {
+	if ./typo3conf/ext/phpunit/Composer/vendor/bin/phpunit -c typo3/sysext/core/Build/UnitTests.xml
+	then
+		return 0
+	else
+		return 99
+	fi
+}
 function phpLint {
 	if find . -name \*.php | parallel --gnu --keep-order 'php -l {}' > /tmp/errors
 	then
