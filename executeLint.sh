@@ -1,5 +1,5 @@
 #!/bin/bash
-if find . -name \*.php | parallel --gnu --keep-order 'php -l {}' > /tmp/errors
+if find typo3/ -name \*.php | parallel --gnu --keep-order 'php -l {}' > /tmp/errors
 then
 	exit 0
 else
