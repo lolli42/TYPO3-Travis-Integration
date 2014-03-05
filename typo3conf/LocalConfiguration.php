@@ -49,7 +49,7 @@ return array(
 		'encryptionKey' => 'Travis Tests',
 		'forceReturnPath' => '1',
 		'setDBinit' => 'SET NAMES utf8',
-		'setMemoryLimit' => 1280,
+		'setMemoryLimit' => 2048,
 		'sitename' => 'New TYPO3 site',
 		'sqlDebug' => '1',
 	),
