@@ -54,26 +54,28 @@ function installRedis() {
 	sudo make install
 	cd $_pwd
 }
-
-function phpLint {
-	for file in `find . -name \*.php`
-	do
-		echo -en "\r\033[KChecking: $file"
-		if ! php -l $file > /dev/null
-		then
-			echo -en "\r\033[K"
-			echo -e "\e[00;31mSyntax errors detected in file: $file\e[00m"
-			ERR=1
-			[ -z "$1" ] && break
-		fi
-	done
-
-	echo -e "\r\033[K"
-
-	if [ -n "$ERR" ]
+function functionalTestsCommand {
+	if grep directory typo3/sysext/core/Build/FunctionalTests.xml | sed 's#[	]*<directory>\.\./\.\./\.\./\.\./\(typo3/sysext.*\)</directory>$#\1#g' | parallel --gnu --keep-order 'echo "Running {} tests"; ./typo3conf/ext/phpunit/Composer/vendor/bin/phpunit -c typo3/sysext/core/Build/FunctionalTests.xml {}'
 	then
+		return 0
+	else
 		return 99
 	fi
-
-	return 0
+}
+function unitTestCommand {
+	if ./typo3conf/ext/phpunit/Composer/vendor/bin/phpunit -c typo3/sysext/core/Build/UnitTests.xml
+	then
+		return 0
+	else
+		return 99
+	fi
+}
+function phpLint {
+	if find . -name \*.php | parallel --gnu --keep-order 'php -l {}' > /tmp/errors
+	then
+		return 0
+	else
+		grep -v "No syntax errors detected in" /tmp/errors
+		return 99
+	fi
 }

@@ -45,6 +45,50 @@ require __DIR__ . '/../../typo3/sysext/core/Classes/Core/Bootstrap.php';
 class DatabaseImport {
 
 	/**
+	 * @var \TYPO3\CMS\Install\Service\SqlSchemaMigrationService
+	 */
+	protected $schemaMigrationService;
+
+	/**
+	 * @var \TYPO3\CMS\Install\Service\SqlExpectedSchemaService
+	 */
+	protected $expectedSchemaService;
+
+	/**
+	 *
+	 */
+	public function __construct() {
+		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+		$signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher');
+
+		$this->schemaMigrationService = new \TYPO3\CMS\Install\Service\SqlSchemaMigrationService();
+		$this->expectedSchemaService = new \TYPO3\CMS\Install\Service\SqlExpectedSchemaService();
+
+		// Disable the extbase object cache, because the signal slot dispatcher will use but it is not present yet.
+		$this->disableExtbaseObjectCaching();
+
+		// Take care of property injection
+		$objectManagerPropertyReflection = new \ReflectionProperty($this->expectedSchemaService, 'objectManager');
+		$signalSlotDispatcherPropertyReflection = new \ReflectionProperty($this->expectedSchemaService, 'signalSlotDispatcher');
+		$objectManagerPropertyReflection->setAccessible(TRUE);
+		$signalSlotDispatcherPropertyReflection->setAccessible(TRUE);
+		$objectManagerPropertyReflection->setValue($this->expectedSchemaService, $objectManager);
+		$signalSlotDispatcherPropertyReflection->setValue($this->expectedSchemaService, $signalSlotDispatcher);
+	}
+
+	/**
+	 *
+	 */
+	protected function disableExtbaseObjectCaching() {
+		$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['extbase_object'] = array (
+			'frontend' => 'TYPO3\CMS\Core\Cache\Frontend\VariableFrontend',
+			'backend' => 'TYPO3\CMS\Core\Cache\Backend\TransientMemoryBackend',
+			'options' => array()
+		);
+		$GLOBALS['typo3CacheManager']->setCacheConfigurations($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']);
+	}
+
+	/**
 	 * Main entry method
 	 *
 	 * @return void
@@ -61,25 +105,23 @@ class DatabaseImport {
 	protected function importDatabaseData() {
 		// Import database data
 		$database = $this->getDatabase();
-		$schemaMigrationService = new \TYPO3\CMS\Install\Service\SqlSchemaMigrationService();
-		$expectedSchemaService = new \TYPO3\CMS\Install\Service\SqlExpectedSchemaService();
 
 		// Raw concatenated ext_tables.sql and friends string
-		$expectedSchemaString = $expectedSchemaService->getTablesDefinitionString(TRUE);
-		$statements = $schemaMigrationService->getStatementArray($expectedSchemaString, TRUE);
-		list($_, $insertCount) = $schemaMigrationService->getCreateTables($statements, TRUE);
+		$expectedSchemaString = $this->expectedSchemaService->getTablesDefinitionString(TRUE);
+		$statements = $this->schemaMigrationService->getStatementArray($expectedSchemaString, TRUE);
+		list($_, $insertCount) = $this->schemaMigrationService->getCreateTables($statements, TRUE);
 
-		$fieldDefinitionsFile = $schemaMigrationService->getFieldDefinitions_fileContent($expectedSchemaString);
-		$fieldDefinitionsDatabase = $schemaMigrationService->getFieldDefinitions_database();
-		$difference = $schemaMigrationService->getDatabaseExtra($fieldDefinitionsFile, $fieldDefinitionsDatabase);
-		$updateStatements = $schemaMigrationService->getUpdateSuggestions($difference);
+		$fieldDefinitionsFile = $this->schemaMigrationService->getFieldDefinitions_fileContent($expectedSchemaString);
+		$fieldDefinitionsDatabase = $this->schemaMigrationService->getFieldDefinitions_database();
+		$difference = $this->schemaMigrationService->getDatabaseExtra($fieldDefinitionsFile, $fieldDefinitionsDatabase);
+		$updateStatements = $this->schemaMigrationService->getUpdateSuggestions($difference);
 
-		$schemaMigrationService->performUpdateQueries($updateStatements['add'], $updateStatements['add']);
-		$schemaMigrationService->performUpdateQueries($updateStatements['change'], $updateStatements['change']);
-		$schemaMigrationService->performUpdateQueries($updateStatements['create_table'], $updateStatements['create_table']);
+		$this->schemaMigrationService->performUpdateQueries($updateStatements['add'], $updateStatements['add']);
+		$this->schemaMigrationService->performUpdateQueries($updateStatements['change'], $updateStatements['change']);
+		$this->schemaMigrationService->performUpdateQueries($updateStatements['create_table'], $updateStatements['create_table']);
 
 		foreach ($insertCount as $table => $count) {
-			$insertStatements = $schemaMigrationService->getTableInsertStatements($statements, $table);
+			$insertStatements = $this->schemaMigrationService->getTableInsertStatements($statements, $table);
 			foreach ($insertStatements as $insertQuery) {
 				$insertQuery = rtrim($insertQuery, ';');
 				$database->admin_query($insertQuery);
