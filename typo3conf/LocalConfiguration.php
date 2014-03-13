@@ -1,6 +1,7 @@
 <?php
 return array(
 	'BE' => array(
+		'debug' => TRUE,
 		'disable_exec_function' => 0,
 		'fileCreateMask' => '0664',
 		'folderCreateMask' => '2774',
@@ -22,6 +23,7 @@ return array(
 	),
 	'FE' => array(
 		'addRootLineFields' => 'backend_layout',
+		'debug' => TRUE,
 		'lifetime' => '604800',
 		'logfile_dir' => 'localsettings/logs/',
 		'pageNotFound_handling' => '/404/',
@@ -41,12 +43,13 @@ return array(
 	'SYS' => array(
 		'UTF8filesystem' => '1',
 		'debugExceptionHandler' => '',
-		'devIPmask' => ',192.168.1.*',
-		'displayErrors' => '1',
+		'devIPmask' => '*',
+		'displayErrors' => TRUE,
 		'doNotCheckReferer' => '1',
 		'enableDeprecationLog' => 'file',
 		'enable_DLOG' => 'enable_DLOG',
 		'encryptionKey' => 'Travis Tests',
+		'exceptionalErrors' => 28674,
 		'forceReturnPath' => '1',
 		'setDBinit' => 'SET NAMES utf8',
 		'setMemoryLimit' => 2048,
